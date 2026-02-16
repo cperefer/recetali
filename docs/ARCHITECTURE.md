@@ -1,5 +1,16 @@
 # Recetali
 
+## Descripción
+
+Recetali is a web app for creating and consulting cooking recipes:
+
+- Public visitors can see recipes without authentication.
+- Only admin users can manage (create, modify or delete) recipes.
+- Only admin users can tag a recipe as favorite.
+- Favorite recipes are private and are associated with each admin user.
+
+Fullstack architecture based on Next.JS with Server Actions
+
 ## Tech stack
 
 **Frontend + backend**

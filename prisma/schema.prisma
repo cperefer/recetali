@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum RecipeCategory {
+  CARNE
+  PESCADO
+  ARROZ
+  PASTA
+  POSTRE
+  ENSALADA
+  OTRO
+}
+
+enum IngredientType {
+  CARNE
+  PESCADO
+  VEGETAL
+  ESPECIA
+  LACTEO
+  CEREAL
+  OTRO
+}
+
+
+// ==========================
+// TABLES
+// ==========================
+
+model User {
+  id  Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
+  password  String
+  role Role
+  createdAt DateTime @default(now())
+
+  recipes   Recipe[]
+  favorites Favorite[]
+}
+
+model Recipe {
+  id  Int      @id @default(autoincrement())
+  name String
+  slug String @unique
+  steps String
+  imageUrl String
+  category RecipeCategory
+  user  User  @relation(fields: [userId], references: [id])
+  userId Int
+  timesDone Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime  @updatedAt
+
+  ingredients RecipeIngredient[]
+  favorites    Favorite[]
+
+  @@index([name])
+  @@index([category])
+}
+
+model Ingredient {
+  id Int      @id @default(autoincrement())
+  name String @unique
+  type IngredientType
+  createdAt DateTime @default(now())
+
+  recipes   RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id Int      @id @default(autoincrement())
+  recipeId Int
+  ingredientId Int
+  quantity String
+  unit String
+
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+
+}
+
+model Favorite {
+  id Int      @id @default(autoincrement())
+  userId Int
+  recipeId Int
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+
+  @@unique([userId, recipeId])
+}

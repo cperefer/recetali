@@ -35,11 +35,6 @@ enum IngredientType {
   OTRO
 }
 
-
-// ==========================
-// TABLES
-// ==========================
-
 model User {
   id  Int      @id @default(autoincrement())
   firstName String

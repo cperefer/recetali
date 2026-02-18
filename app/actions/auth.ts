@@ -1,7 +1,7 @@
 "use server";
 
-import { validatePassword } from "@/lib/auth";
-import { getUserByEmail } from "@/lib/dal";
+import { signIn } from "@/auth";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 const loginSchema = z.object({
@@ -26,67 +26,42 @@ export const loginAction = async (
   _prevState: LoginActionResponse | null,
   form: FormData,
 ): Promise<LoginActionResponse> => {
-  try {
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
+  const email = form.get("email") as string;
+  const password = form.get("password") as string;
 
-    console.log({ email, password });
+  const validateFields = loginSchema.safeParse({
+    email,
+    password,
+  });
 
-    const validateFields = loginSchema.safeParse({
-      email,
-      password,
-    });
-
-    if (!validateFields.success) {
-      return {
-        success: false,
-        email,
-        password,
-        errors: validateFields.error.flatten().fieldErrors,
-      };
-    }
-
-    const result = await getUserByEmail(email);
-
-    if (!result) {
-      return {
-        success: false,
-        email,
-        password,
-        message: "Email o contraseña no válidos",
-        errors: {
-          email: ["Email o contraseña no válidos"],
-          password: ["Email o contraseña no válidos"],
-        },
-      };
-    }
-
-    const isValidPassword = await validatePassword(password, result.password);
-
-    if (!isValidPassword) {
-      return {
-        success: false,
-        email,
-        password,
-        message: "Email o contraseña no válidos",
-        errors: {
-          email: ["Email o contraseña no válidos"],
-          password: ["Email o contraseña no válidos"],
-        },
-      };
-    }
-
-    return {
-      email,
-      password,
-      success: true,
-    };
-  } catch (error) {
-    console.error(error);
-
+  if (!validateFields.success) {
     return {
       success: false,
-      message: "Ha ocurrido un error",
+      email,
+      password,
+      errors: validateFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    redirect("/");
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      email,
+      password,
+      message: "Email o contraseña no válidos",
+      errors: {
+        email: ["Email o contraseña no válidos"],
+        password: ["Email o contraseña no válidos"],
+      },
     };
   }
 };

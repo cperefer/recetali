@@ -50,7 +50,11 @@ export const loginAction = async (
       redirect: false,
     });
 
-    redirect("/");
+    return {
+      success: true,
+      email,
+      password,
+    };
   } catch (error) {
     console.log(error);
     return {

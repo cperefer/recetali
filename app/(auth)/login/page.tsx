@@ -1,10 +1,15 @@
 "use client";
 
 import { loginAction } from "@/app/actions/auth";
+import { redirect } from "next/navigation";
 import { useActionState } from "react";
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, null);
+
+  if (state?.success) {
+    redirect("/");
+  }
 
   return (
     <div className="h-3/5 max-h-150 md:h-4/5 w-4/5 md:w-1/3 border-2 border-white rounded-2xl ">

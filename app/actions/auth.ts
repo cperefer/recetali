@@ -1,6 +1,7 @@
 "use server";
 
 import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
 import z from "zod";
 
 const loginSchema = z.object({
@@ -15,12 +16,10 @@ export type LoginActionResponse = {
   password?: string;
   success?: boolean;
   message?: string;
-  errors?: {
-    email?: string[];
-    password?: string[];
-  };
+  error?: string;
 };
 
+const GENERIC_ERROR = "Email o contraseña no válidos";
 export const loginAction = async (
   _prevState: LoginActionResponse | null,
   form: FormData,
@@ -38,7 +37,7 @@ export const loginAction = async (
       success: false,
       email,
       password,
-      errors: validateFields.error.flatten().fieldErrors,
+      error: GENERIC_ERROR,
     };
   }
 
@@ -55,16 +54,21 @@ export const loginAction = async (
       password,
     };
   } catch (error) {
-    console.log(error);
-    return {
-      success: false,
-      email,
-      password,
-      message: "Email o contraseña no válidos",
-      errors: {
-        email: ["Email o contraseña no válidos"],
-        password: ["Email o contraseña no válidos"],
-      },
-    };
+    if (error instanceof AuthError) {
+      const errorMessage =
+        error.type === "CredentialsSignin"
+          ? GENERIC_ERROR
+          : "Algo ha salido mal";
+
+      return {
+        success: false,
+        email,
+        password,
+        message: "Email o contraseña no válidos",
+        error: errorMessage,
+      };
+    }
+
+    throw error;
   }
 };

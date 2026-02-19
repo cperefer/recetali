@@ -57,6 +57,7 @@ model Recipe {
   category RecipeCategory
   user  User  @relation(fields: [userId], references: [id])
   userId Int
+  observations String
   timesDone Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime  @updatedAt

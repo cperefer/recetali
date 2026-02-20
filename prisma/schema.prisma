@@ -16,12 +16,17 @@ enum Role {
 }
 
 enum RecipeCategory {
-  CARNE
-  PESCADO
-  ARROZ
-  PASTA
-  POSTRE
-  ENSALADA
+  ENTRANTES
+  ENSALADAS
+  SOPAS_Y_CREMAS
+  VERDURAS
+  LEGUMBRES
+  CARNES
+  PESCADOS_Y_MARISCOS
+  ARROCES
+  HUEVOS
+  PASTAS
+  POSTRES
   OTRO
 }
 
@@ -33,6 +38,15 @@ enum IngredientType {
   LACTEO
   CEREAL
   OTRO
+}
+
+enum Unit {
+  MILILITROS
+  LITROS
+  GRAMOS
+  MILIGRAMOS
+  ENTERO
+  PIZCA
 }
 
 model User {
@@ -57,10 +71,10 @@ model Recipe {
   category RecipeCategory
   user  User  @relation(fields: [userId], references: [id])
   userId Int
-  observations String
+  observations String?
   timesDone Int @default(0)
   createdAt DateTime @default(now())
-  updatedAt DateTime  @updatedAt
+  updatedAt DateTime?  @updatedAt
 
   ingredients RecipeIngredient[]
   favorites    Favorite[]
@@ -83,7 +97,7 @@ model RecipeIngredient {
   recipeId Int
   ingredientId Int
   quantity String
-  unit String
+  unit Unit
 
   recipe       Recipe     @relation(fields: [recipeId], references: [id])
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])

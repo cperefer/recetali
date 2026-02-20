@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 
 export const getUserByEmail = async (email: string) => {
@@ -30,7 +31,7 @@ export const getRecipeById = async (id: number) => {
   }
 };
 
-export const getRecipeBySlug = async (slug: string) => {
+export const getRecipeBySlug = cache(async (slug: string) => {
   console.log({ slug });
 
   try {
@@ -44,4 +45,4 @@ export const getRecipeBySlug = async (slug: string) => {
 
     return null;
   }
-};
+});

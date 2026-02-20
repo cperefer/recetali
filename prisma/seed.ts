@@ -31,7 +31,41 @@ async function main() {
     },
   });
 
-  console.log({ alicia, miguel });
+  const sopa = await prisma.recipe.upsert({
+    where: { id: 1, slug: "sopas_de_ajo" },
+    update: {},
+    create: {
+      name: "Sopas de ajo",
+      slug: "sopas_de_ajo",
+      steps:
+        "Frie ajo, mete pan, añade caldo, que haga chup pero sin llegar a hervir y echar un huevito",
+      imageUrl: "imagen",
+      category: "SOPAS_Y_CREMAS",
+      userId: 2,
+    },
+  });
+
+  const ajo = await prisma.ingredient.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      name: "Ajo",
+      type: "VEGETAL",
+    },
+  });
+
+  const ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      recipeId: 1,
+      ingredientId: 1,
+      quantity: "4",
+      unit: "ENTERO",
+    },
+  });
+
+  console.log({ alicia, miguel, sopa, ajo, ajosopa });
 }
 
 main()

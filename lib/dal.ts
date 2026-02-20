@@ -13,3 +13,35 @@ export const getUserByEmail = async (email: string) => {
     return null;
   }
 };
+
+export const getRecipeById = async (id: number) => {
+  console.log({ id });
+
+  try {
+    const result = await prisma.recipe.findUnique({
+      where: { id },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting recipe", error);
+
+    return null;
+  }
+};
+
+export const getRecipeBySlug = async (slug: string) => {
+  console.log({ slug });
+
+  try {
+    const result = await prisma.recipe.findUnique({
+      where: { slug },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting recipe", error);
+
+    return null;
+  }
+};

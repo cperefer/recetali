@@ -42,6 +42,9 @@ async function main() {
       imageUrl: "imagen",
       category: "SOPAS_Y_CREMAS",
       userId: 2,
+      dificulty: "EASY",
+      timeToDone: 60,
+      pax: 2,
     },
   });
 

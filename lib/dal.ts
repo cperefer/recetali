@@ -46,3 +46,22 @@ export const getRecipeBySlug = cache(async (slug: string) => {
     return null;
   }
 });
+
+export const getRecipeIngredientsById = async (id: number) => {
+  console.log({ id });
+
+  try {
+    const result = await prisma.recipeIngredient.findMany({
+      include: {
+        ingredient: true,
+      },
+      where: { recipeId: id },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting recipe ingredients", error);
+
+    return null;
+  }
+};

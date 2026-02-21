@@ -15,6 +15,12 @@ enum Role {
   USER
 }
 
+enum Dificulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
 enum RecipeCategory {
   ENTRANTES
   ENSALADAS
@@ -73,6 +79,9 @@ model Recipe {
   userId Int
   observations String?
   timesDone Int @default(0)
+  pax Int @default(2)
+  dificulty Dificulty
+  timeToDone Int
   createdAt DateTime @default(now())
   updatedAt DateTime?  @updatedAt
 

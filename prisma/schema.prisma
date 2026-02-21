@@ -80,8 +80,8 @@ model Recipe {
   observations String?
   timesDone Int @default(0)
   pax Int @default(2)
-  dificulty Dificulty
-  timeToDone Int
+  dificulty Dificulty @default(EASY)
+  timeToDone Int @default(30)
   createdAt DateTime @default(now())
   updatedAt DateTime?  @updatedAt
 

@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth";
+import Link from "next/link";
 
 export default async function Home() {
   const session = await auth();
@@ -16,6 +17,7 @@ export default async function Home() {
       >
         {session && <button type="submit">Signout</button>}
       </form>
+      <Link href="/recipes/sopas_de_ajo">Sopas de ajo</Link>
     </div>
   );
 }

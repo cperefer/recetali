@@ -1,5 +1,6 @@
 import { getRecipeBySlug } from "@/lib/dal";
 import { notFound } from "next/navigation";
+import { RecipeView } from "../_components/RecipeView";
 
 type Params = {
   params: Promise<{ slug: string }>;
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: Params) {
     title: `Recetali - ${recipe?.name}`,
   };
 }
+
 export default async function SeeRecipePage({ params }: Params) {
   const { slug } = await params;
 
@@ -26,7 +28,7 @@ export default async function SeeRecipePage({ params }: Params) {
     notFound();
   }
 
-  console.log(recipe);
+  // console.log(recipe);
 
-  return <div>page {JSON.stringify(recipe)}</div>;
+  return <RecipeView recipe={recipe} />;
 }

@@ -36,25 +36,6 @@ enum RecipeCategory {
   OTRO
 }
 
-enum IngredientType {
-  CARNE
-  PESCADO
-  VEGETAL
-  ESPECIA
-  LACTEO
-  CEREAL
-  OTRO
-}
-
-enum Unit {
-  MILILITROS
-  LITROS
-  GRAMOS
-  MILIGRAMOS
-  ENTERO
-  PIZCA
-}
-
 model User {
   id  Int      @id @default(autoincrement())
   firstName String
@@ -92,25 +73,13 @@ model Recipe {
   @@index([category])
 }
 
-model Ingredient {
-  id Int      @id @default(autoincrement())
-  name String @unique
-  type IngredientType
-  createdAt DateTime @default(now())
-
-  recipes   RecipeIngredient[]
-}
 
 model RecipeIngredient {
   id Int      @id @default(autoincrement())
   recipeId Int
-  ingredientId Int
-  quantity String
-  unit Unit
+  description String
 
   recipe       Recipe     @relation(fields: [recipeId], references: [id])
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-
 }
 
 model Favorite {

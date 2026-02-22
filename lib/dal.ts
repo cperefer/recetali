@@ -52,9 +52,6 @@ export const getRecipeIngredientsById = async (id: number) => {
 
   try {
     const result = await prisma.recipeIngredient.findMany({
-      include: {
-        ingredient: true,
-      },
       where: { recipeId: id },
     });
 

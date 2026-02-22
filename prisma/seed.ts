@@ -48,27 +48,88 @@ async function main() {
     },
   });
 
-  const ajo = await prisma.ingredient.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      name: "Ajo",
-      type: "VEGETAL",
-    },
-  });
-
-  const ajosopa = await prisma.recipeIngredient.upsert({
+  let ajosopa = await prisma.recipeIngredient.upsert({
     where: { id: 1 },
     update: {},
     create: {
       recipeId: 1,
-      ingredientId: 1,
-      quantity: "4",
-      unit: "ENTERO",
+      description: "4 dientes de ajo",
     },
   });
 
-  console.log({ alicia, miguel, sopa, ajo, ajosopa });
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "2 huevos",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "6 rebanadas de pan duro",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 4 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "50 gramos de jamón serrano",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 5 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "1 litro de caldo de pollo",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 6 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "sal y pimienta al gusto",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 7 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "2 cucharadas de pimentón dulce",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 8 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "una pizca de pimentón de la Vera",
+    },
+  });
+
+  ajosopa = await prisma.recipeIngredient.upsert({
+    where: { id: 9 },
+    update: {},
+    create: {
+      recipeId: 1,
+      description: "50 ml de aceite de oliva virgen extra",
+    },
+  });
+
+  console.log({ alicia, miguel, sopa, ajosopa });
 }
 
 main()

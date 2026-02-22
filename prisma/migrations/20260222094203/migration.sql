@@ -18,29 +18,22 @@ CREATE TABLE "Recipe" (
     "imageUrl" TEXT NOT NULL,
     "category" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
+    "observations" TEXT,
     "timesDone" INTEGER NOT NULL DEFAULT 0,
+    "pax" INTEGER NOT NULL DEFAULT 2,
+    "dificulty" TEXT NOT NULL DEFAULT 'EASY',
+    "timeToDone" INTEGER NOT NULL DEFAULT 30,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "updatedAt" DATETIME,
     CONSTRAINT "Recipe_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "Ingredient" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
 CREATE TABLE "RecipeIngredient" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "recipeId" INTEGER NOT NULL,
-    "ingredientId" INTEGER NOT NULL,
-    "quantity" TEXT NOT NULL,
-    "unit" TEXT NOT NULL,
-    CONSTRAINT "RecipeIngredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "RecipeIngredient_ingredientId_fkey" FOREIGN KEY ("ingredientId") REFERENCES "Ingredient" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "description" TEXT NOT NULL,
+    CONSTRAINT "RecipeIngredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -64,9 +57,6 @@ CREATE INDEX "Recipe_name_idx" ON "Recipe"("name");
 
 -- CreateIndex
 CREATE INDEX "Recipe_category_idx" ON "Recipe"("category");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Ingredient_name_key" ON "Ingredient"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Favorite_userId_recipeId_key" ON "Favorite"("userId", "recipeId");

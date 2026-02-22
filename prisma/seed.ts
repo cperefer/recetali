@@ -38,7 +38,7 @@ async function main() {
       name: "Sopas de ajo",
       slug: "sopas_de_ajo",
       steps:
-        "Frie ajo, mete pan, añade caldo, que haga chup pero sin llegar a hervir y echar un huevito",
+        "Pelamos y fileteamos los ajos. Además, en un cazo a parte vamos poniendo el caldo a calentar a fuego bajo<br /> En una cazuela calentamos aceite y metemos los ajos. Saltear hasta que los ajos empiecen a estar doraditos pero sin que se quemen. Añadimos también el jamón y vamos removiendo poco a poco para integrar los sabores.<br /> Cuando los ajos estén doraditos añadimos 4 de las rebanadas de pan y le damos unas vueltas para que se empape.<br /> Retiramos un poco la cazuela del fuego para evitar que se queme y echamos el pimentón. Le damos unas vueltas para ir integrando todo<br /> Volvemos a colocar la cazuela al fuego y tras un par de minutos echamos la mitad del caldo.<br /> A partir de este momento es muy importante tener el caldo a fuego medio / bajo para que nunca llegue a hervir. Removemos durante 3 - 5 minutos y añadimos el resto del caldo.<br /> Dejamos el caldo cociendo durante un tiempo que puede variar entre media hora y horas, ya al gusto del consumidor. A mi me gusta ir probando de vez en cuando.<br /> Pasados unos 20 - 30 minutos añadimos el resto del pan que hemos tostado previamente en aceite de oliva. Lo dejamos flotar en la superficie hasta que se ablande.<br /> Es importante no salpimentar hasta este punto habiendo probado el caldo ya reducido. Esto es porque hemos usado jamón y es facil no coger el punto de sal por ello.<br /> Como toque final, echamos un par de huevos y los echamos a la sopa removiendo.",
       imageUrl: "imagen",
       category: "SOPAS_Y_CREMAS",
       userId: 2,

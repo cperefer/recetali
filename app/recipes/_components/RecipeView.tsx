@@ -1,8 +1,14 @@
-import { Recipe } from "@/app/generated/prisma/client";
+import { Recipe, RecipeIngredient } from "@/app/generated/prisma/client";
 import { RecipeHeader } from "./RecipeHeader";
 import RecipeBadges from "./RecipeBadges";
+import { RecipeIngredients } from "./RecipeIngredients";
 
-export function RecipeView({ recipe }: { recipe: Recipe }) {
+type Props = {
+  recipe: Recipe;
+  ingredients: RecipeIngredient[];
+};
+
+export function RecipeView({ recipe, ingredients }: Props) {
   return (
     <div className="flex flex-col relative w-full h-full">
       <RecipeHeader
@@ -17,6 +23,7 @@ export function RecipeView({ recipe }: { recipe: Recipe }) {
         people={recipe.pax}
         time={recipe.timeToDone}
       />
+      <RecipeIngredients ingredients={ingredients} />
     </div>
   );
 }

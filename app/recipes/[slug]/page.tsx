@@ -1,4 +1,4 @@
-import { getRecipeBySlug } from "@/lib/dal";
+import { getRecipeBySlug, getRecipeIngredientsById } from "@/lib/dal";
 import { notFound } from "next/navigation";
 import { RecipeView } from "../_components/RecipeView";
 
@@ -28,7 +28,10 @@ export default async function SeeRecipePage({ params }: Params) {
     notFound();
   }
 
-  // console.log(recipe);
+  const ingredients = await getRecipeIngredientsById(recipe.id);
 
-  return <RecipeView recipe={recipe} />;
+  // console.log(recipe);
+  // console.log(ingredients);
+
+  return <RecipeView recipe={recipe} ingredients={ingredients ?? []} />;
 }

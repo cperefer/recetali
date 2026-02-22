@@ -1,7 +1,10 @@
+"use client";
+
 import { Recipe, RecipeIngredient } from "@/app/generated/prisma/client";
 import { RecipeHeader } from "./RecipeHeader";
-import RecipeBadges from "./RecipeBadges";
+import { RecipeBadges } from "./RecipeBadges";
 import { RecipeIngredients } from "./RecipeIngredients";
+import { RecipeSteps } from "./RecipeSteps";
 
 type Props = {
   recipe: Recipe;
@@ -23,7 +26,10 @@ export function RecipeView({ recipe, ingredients }: Props) {
         people={recipe.pax}
         time={recipe.timeToDone}
       />
-      <RecipeIngredients ingredients={ingredients} />
+      <div className="flex">
+        <RecipeIngredients ingredients={ingredients} />
+        <RecipeSteps steps={recipe.steps} />
+      </div>
     </div>
   );
 }

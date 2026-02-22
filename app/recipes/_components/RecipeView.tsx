@@ -5,13 +5,15 @@ import { RecipeHeader } from "./RecipeHeader";
 import { RecipeBadges } from "./RecipeBadges";
 import { RecipeIngredients } from "./RecipeIngredients";
 import { RecipeSteps } from "./RecipeSteps";
+import { RecipeButtons } from "./RecipeButtons";
 
 type Props = {
   recipe: Recipe;
   ingredients: RecipeIngredient[];
+  isAuthenticated: boolean;
 };
 
-export function RecipeView({ recipe, ingredients }: Props) {
+export function RecipeView({ recipe, ingredients, isAuthenticated }: Props) {
   return (
     <div className="flex flex-col relative w-full h-full">
       <RecipeHeader
@@ -26,10 +28,11 @@ export function RecipeView({ recipe, ingredients }: Props) {
         people={recipe.pax}
         time={recipe.timeToDone}
       />
-      <div className="flex flex-col md:flex-row items-center md:items-baseline pr-4 md:gap-8">
+      <div className="flex flex-col md:flex-row items-center md:items-baseline  pb-24 md:gap-8">
         <RecipeIngredients ingredients={ingredients} />
         <RecipeSteps steps={recipe.steps} />
       </div>
+      <RecipeButtons isAuthenticated={isAuthenticated} />
     </div>
   );
 }

@@ -26,7 +26,7 @@ export function RecipeView({ recipe, ingredients }: Props) {
         people={recipe.pax}
         time={recipe.timeToDone}
       />
-      <div className="flex">
+      <div className="flex flex-col md:flex-row items-center md:items-baseline pr-4 md:gap-8">
         <RecipeIngredients ingredients={ingredients} />
         <RecipeSteps steps={recipe.steps} />
       </div>

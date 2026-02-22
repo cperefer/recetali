@@ -2,8 +2,8 @@
 
 export function RecipeSteps({ steps }: { steps: string }) {
   return (
-    <div className="mt-5 md:ml-8 mr-8 w-9/10 md:w-3/4 rounded-md shadow-md dark:shadow-xs dark:shadow-amber-600/30">
-      <div className="px-2 pt-2 pb-2 pl-4 text-xl  bg-linear-to-r from-amber-600 to-amber-900 rounded-t-sm">
+    <div className="mt-5 w-9/10 md:w-3/4 rounded-md shadow-md dark:shadow-xs dark:shadow-amber-600/30">
+      <div className="px-2 pt-2 pb-2 pl-4 text-xl text-white bg-linear-to-r from-amber-600 to-amber-900 rounded-t-sm">
         <h2>Instrucciones</h2>
       </div>
       <div className="mt-1 pb-4 px-4 text-justify">

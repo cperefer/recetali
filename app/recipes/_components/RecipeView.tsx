@@ -22,6 +22,7 @@ export function RecipeView({ recipe, ingredients, isAuthenticated }: Props) {
         dificulty={recipe.dificulty}
         people={recipe.pax}
         time={recipe.timeToDone}
+        isAuthenticated={isAuthenticated}
       />
       <RecipeBadges
         dificulty={recipe.dificulty}

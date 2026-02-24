@@ -3,8 +3,10 @@ import { RecipeFavoriteButton } from "./RecipeFavoriteButton";
 
 export function RecipeButtons({
   isAuthenticated,
+  isFavorite,
 }: {
   isAuthenticated: boolean;
+  isFavorite: boolean;
 }) {
   return (
     <>
@@ -13,7 +15,10 @@ export function RecipeButtons({
         <div className="px-4 pb-4 pt-2 bg-transparent">
           <div className="flex gap-3 max-w-md mx-auto">
             {isAuthenticated && (
-              <RecipeFavoriteButton isFavorite={false} isHeaderButton={false} />
+              <RecipeFavoriteButton
+                isFavorite={isFavorite}
+                isHeaderButton={false}
+              />
             )}
 
             <button
@@ -29,7 +34,10 @@ export function RecipeButtons({
       {/** BOTON PARA DESKTOP */}
       <div className="hidden md:flex justify-end items-center gap-4 px-4 pb-8">
         {isAuthenticated && (
-          <RecipeFavoriteButton isFavorite={false} isHeaderButton={false} />
+          <RecipeFavoriteButton
+            isFavorite={isFavorite}
+            isHeaderButton={false}
+          />
         )}
       </div>
     </>

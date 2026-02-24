@@ -34,7 +34,7 @@ export function RecipeHeader({
           <h1 className="text-3xl md:text-6xl">{title}</h1>
           <div className="pt-2">
             <p>
-              {time} mins · {fromDatabaseToHuman(dificulty)} · {people} personas
+              {time} min · {fromDatabaseToHuman(dificulty)} · {people} personas
             </p>
           </div>
         </div>

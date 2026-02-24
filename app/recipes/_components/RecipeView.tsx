@@ -40,7 +40,10 @@ export function RecipeView({
         <RecipeIngredients ingredients={ingredients} />
         <RecipeSteps steps={recipe.steps} />
       </div>
-      <RecipeButtons isAuthenticated={isAuthenticated} />
+      <RecipeButtons
+        isAuthenticated={isAuthenticated}
+        isFavorite={isFavorite}
+      />
     </div>
   );
 }

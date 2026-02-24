@@ -1,8 +1,4 @@
-import {
-  getRecipeBySlug,
-  getRecipeFavoriteForUser,
-  getRecipeIngredientsById,
-} from "@/lib/dal";
+import { getRecipeBySlug, getRecipeIngredientsById } from "@/lib/dal";
 import { notFound } from "next/navigation";
 import { RecipeView } from "../_components/RecipeView";
 import { auth } from "@/auth";
@@ -36,9 +32,7 @@ export default async function SeeRecipePage({ params }: Params) {
   }
 
   const ingredients = await getRecipeIngredientsById(recipe.id);
-  const isFavorite =
-    isAuthenticated &&
-    !!(await getRecipeFavoriteForUser(Number(session.user.id), recipe.id));
+  const isFavorite = isAuthenticated && session.favorites.includes(recipe.id);
 
   // console.log(recipe);
   // console.log(ingredients);

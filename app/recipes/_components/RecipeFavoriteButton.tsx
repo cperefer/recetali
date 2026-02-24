@@ -16,14 +16,14 @@ export function RecipeFavoriteButton({
       ) : (
         <>
           <button className="flex-1 md:hidden flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 transition text-white py-3 rounded-xl font-medium">
-            <Heart size={18} />
-            Guardar
+            <Heart fill={isFavorite ? "white" : "none"} size={18} />
+            {isFavorite ? "Eliminar" : "Guardar"}
           </button>
-          <button className="hidden md:block bg-orange-600 hover:bg-orange-700 transition text-white px-6 py-2 rounded-full font-medium">
+          <button className="hidden md:block bg-orange-600 hover:bg-orange-700 transition text-white px-6 py-2 rounded-full font-medium cursor-pointer">
             <span className="float-left pr-3">
-              <Heart />
+              <Heart fill={isFavorite ? "white" : "none"} />
             </span>
-            Guardar
+            {isFavorite ? "Eliminar" : "Guardar"}
           </button>
         </>
       )}

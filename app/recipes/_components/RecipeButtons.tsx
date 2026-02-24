@@ -12,7 +12,7 @@ export function RecipeButtons({
       <div className="fixed bottom-0 left-0 right-0 md:hidden">
         <div className="px-4 pb-4 pt-2 bg-transparent">
           <div className="flex gap-3 max-w-md mx-auto">
-            {!isAuthenticated && (
+            {isAuthenticated && (
               <RecipeFavoriteButton isFavorite={false} isHeaderButton={false} />
             )}
 

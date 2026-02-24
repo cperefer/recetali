@@ -1,5 +1,5 @@
 import { validatePassword } from "@/lib/auth";
-import { getUserByEmail } from "@/lib/dal";
+import { getUserByEmailWithRecipes } from "@/lib/dal";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -8,6 +8,7 @@ interface JWTUser {
   email: string;
   name: string;
   role: string;
+  favorites: number[];
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -17,9 +18,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
+      if (user && "favorites" in user) {
         token.id = user.id;
         token.role = user.role;
+        token.favorites = user.favorites as unknown as number[];
       }
       return token;
     },
@@ -27,6 +29,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.favorites = token.favorites;
       }
 
       return session;
@@ -49,7 +52,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!credentials) {
           return null;
         }
-        const user = await getUserByEmail(email);
+        const user = await getUserByEmailWithRecipes(email);
 
         if (!user) {
           return null;
@@ -66,6 +69,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: user.email,
           name: user.firstName,
           role: user.role,
+          favorites: user.favorites.map((fav) => fav.recipeId),
         };
       },
     }),

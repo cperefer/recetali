@@ -44,19 +44,9 @@ export function RecipeFavoriteButton({
           <button
             onClick={handleToggleFavoriteRecipe}
             disabled={isPending}
-            className="flex-1 md:hidden flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 transition text-white py-3 rounded-xl font-medium disabled:cursor-not-allowed disabled:bg-gray-400"
+            className="btn-primary btn-primary-mobile"
           >
             <Heart fill={isFavorite ? "white" : "none"} size={18} />
-            {isFavorite ? "Eliminar" : "Guardar"}
-          </button>
-          <button
-            onClick={handleToggleFavoriteRecipe}
-            disabled={isPending}
-            className="hidden md:block bg-orange-600 hover:bg-orange-700 transition text-white px-6 py-2 rounded-full font-medium cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-400"
-          >
-            <span className="float-left pr-3">
-              <Heart fill={isFavorite ? "white" : "none"} />
-            </span>
             {isFavorite ? "Eliminar" : "Guardar"}
           </button>
         </>

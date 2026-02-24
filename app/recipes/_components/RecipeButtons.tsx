@@ -1,9 +1,12 @@
-import { Heart, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
+import { RecipeFavoriteButton } from "./RecipeFavoriteButton";
 
 export function RecipeButtons({
   isAuthenticated,
+  isFavorite,
 }: {
   isAuthenticated: boolean;
+  isFavorite: boolean;
 }) {
   return (
     <>
@@ -12,10 +15,10 @@ export function RecipeButtons({
         <div className="px-4 pb-4 pt-2 bg-transparent">
           <div className="flex gap-3 max-w-md mx-auto">
             {isAuthenticated && (
-              <button className="flex-1 flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 transition text-white py-3 rounded-xl font-medium">
-                <Heart size={18} />
-                Guardar
-              </button>
+              <RecipeFavoriteButton
+                isFavorite={isFavorite}
+                isHeaderButton={false}
+              />
             )}
 
             <button
@@ -29,14 +32,12 @@ export function RecipeButtons({
       </div>
 
       {/** BOTON PARA DESKTOP */}
-      <div className=" hidden md:flex justify-end items-center gap-4 px-4 pb-8">
+      <div className="hidden md:flex justify-end items-center gap-4 px-4 pb-8">
         {isAuthenticated && (
-          <button className="bg-orange-600 hover:bg-orange-700 transition text-white px-6 py-2 rounded-full font-medium">
-            <span className="float-left pr-3">
-              <Heart />
-            </span>
-            Guardar
-          </button>
+          <RecipeFavoriteButton
+            isFavorite={isFavorite}
+            isHeaderButton={false}
+          />
         )}
       </div>
     </>

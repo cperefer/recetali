@@ -11,9 +11,15 @@ type Props = {
   recipe: Recipe;
   ingredients: RecipeIngredient[];
   isAuthenticated: boolean;
+  isFavorite: boolean;
 };
 
-export function RecipeView({ recipe, ingredients, isAuthenticated }: Props) {
+export function RecipeView({
+  recipe,
+  ingredients,
+  isAuthenticated,
+  isFavorite,
+}: Props) {
   return (
     <div className="flex flex-col relative w-full h-full">
       <RecipeHeader
@@ -23,6 +29,7 @@ export function RecipeView({ recipe, ingredients, isAuthenticated }: Props) {
         people={recipe.pax}
         time={recipe.timeToDone}
         isAuthenticated={isAuthenticated}
+        isFavorite={isFavorite}
       />
       <RecipeBadges
         dificulty={recipe.dificulty}
@@ -33,7 +40,10 @@ export function RecipeView({ recipe, ingredients, isAuthenticated }: Props) {
         <RecipeIngredients ingredients={ingredients} />
         <RecipeSteps steps={recipe.steps} />
       </div>
-      <RecipeButtons isAuthenticated={isAuthenticated} />
+      <RecipeButtons
+        isAuthenticated={isAuthenticated}
+        isFavorite={isFavorite}
+      />
     </div>
   );
 }

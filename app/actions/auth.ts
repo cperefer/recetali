@@ -20,6 +20,7 @@ export type LoginActionResponse = {
 };
 
 const GENERIC_ERROR = "Email o contraseña no válidos";
+
 export const loginAction = async (
   _prevState: LoginActionResponse | null,
   form: FormData,

@@ -1,4 +1,8 @@
-import { getRecipeBySlug, getRecipeIngredientsById } from "@/lib/dal";
+import {
+  getRecipeBySlug,
+  getRecipeFavoriteForUser,
+  getRecipeIngredientsById,
+} from "@/lib/dal";
 import { notFound } from "next/navigation";
 import { RecipeView } from "../_components/RecipeView";
 import { auth } from "@/auth";
@@ -23,6 +27,7 @@ export async function generateMetadata({ params }: Params) {
 export default async function SeeRecipePage({ params }: Params) {
   const { slug } = await params;
   const session = await auth();
+  const isAuthenticated = !!session;
 
   const recipe = await getRecipeBySlug(slug);
 
@@ -31,15 +36,20 @@ export default async function SeeRecipePage({ params }: Params) {
   }
 
   const ingredients = await getRecipeIngredientsById(recipe.id);
+  const isFavorite =
+    isAuthenticated &&
+    !!(await getRecipeFavoriteForUser(Number(session.user.id), recipe.id));
 
   // console.log(recipe);
   // console.log(ingredients);
+  // console.log(isFavorite);
 
   return (
     <RecipeView
       recipe={recipe}
       ingredients={ingredients ?? []}
       isAuthenticated={!!session}
+      isFavorite={isFavorite}
     />
   );
 }

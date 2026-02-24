@@ -15,6 +15,27 @@ export const getUserByEmail = async (email: string) => {
   }
 };
 
+export const getUserByEmailWithRecipes = async (email: string) => {
+  try {
+    const result = await prisma.user.findUnique({
+      where: { email },
+      include: {
+        favorites: {
+          select: {
+            recipeId: true,
+          },
+        },
+      },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting user by email", error);
+
+    return null;
+  }
+};
+
 export const getRecipeById = async (id: number) => {
   console.log({ id });
 
@@ -58,6 +79,71 @@ export const getRecipeIngredientsById = async (id: number) => {
     return result || null;
   } catch (error) {
     console.error("Error getting recipe ingredients", error);
+
+    return null;
+  }
+};
+
+export const getRecipeFavoriteForUser = async (
+  userId: number,
+  recipeId: number,
+) => {
+  // console.log({ id });
+
+  try {
+    const result = await prisma.favorite.findUnique({
+      where: { userId_recipeId: { userId, recipeId } },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting favorite", error);
+
+    return null;
+  }
+};
+
+export const insertFavoriteRecipe = async (
+  userId: number,
+  recipeId: number,
+) => {
+  // console.log({ id });
+
+  try {
+    const result = await prisma.favorite.create({
+      data: {
+        userId,
+        recipeId,
+      },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting favorite", error);
+
+    return null;
+  }
+};
+
+export const removeFavoriteRecipe = async (
+  userId: number,
+  recipeId: number,
+) => {
+  // console.log({ id });
+
+  try {
+    const result = await prisma.favorite.delete({
+      where: {
+        userId_recipeId: {
+          userId,
+          recipeId,
+        },
+      },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting favorite", error);
 
     return null;
   }

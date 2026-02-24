@@ -1,5 +1,5 @@
 import { fromDatabaseToHuman } from "@/utilites/parseDificulty";
-import { Heart } from "lucide-react";
+import { RecipeFavoriteButton } from "./RecipeFavoriteButton";
 
 type Props = {
   imageUrl: string;
@@ -8,6 +8,7 @@ type Props = {
   dificulty: string;
   people: number;
   isAuthenticated: boolean;
+  isFavorite: boolean;
 };
 
 export function RecipeHeader({
@@ -17,16 +18,15 @@ export function RecipeHeader({
   dificulty,
   people,
   isAuthenticated,
+  isFavorite,
 }: Props) {
   return (
     <div
       className={`w-full h-full min-h-50 md:min-h-65 md:max-h-80   bg-cover sm:bg-auto relative`}
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
-      {!isAuthenticated && (
-        <button className="absolute cursor-pointer right-5 z-50 text-white py-3 font-medium">
-          <Heart fill="white" size={24} />
-        </button>
+      {isAuthenticated && (
+        <RecipeFavoriteButton isFavorite={isFavorite} isHeaderButton={true} />
       )}
 
       <div className="absolute inset-0 flex flex-col justify-end items-center bg-black/20 backdrop-opacity-60">

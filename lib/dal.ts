@@ -15,6 +15,27 @@ export const getUserByEmail = async (email: string) => {
   }
 };
 
+export const getUserByEmailWithRecipes = async (email: string) => {
+  try {
+    const result = await prisma.user.findUnique({
+      where: { email },
+      include: {
+        favorites: {
+          select: {
+            recipeId: true,
+          },
+        },
+      },
+    });
+
+    return result || null;
+  } catch (error) {
+    console.error("Error getting user by email", error);
+
+    return null;
+  }
+};
+
 export const getRecipeById = async (id: number) => {
   console.log({ id });
 

@@ -9,17 +9,23 @@ import {
 import { revalidatePath } from "next/cache";
 
 export const toggleRecipeAction = async (slug: string, isFavorite: boolean) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   const session = await auth();
+
+  if (!session) {
+    throw new Error("No session provided");
+  }
+
   const recipe = await getRecipeBySlug(slug);
 
-  const recipeId = Number(recipe?.id);
+  if (!recipe) {
+    throw new Error("No correct recipe provided");
+  }
 
   try {
     if (isFavorite) {
-      removeFavoriteRecipe(Number(session?.user.id), recipeId);
+      await removeFavoriteRecipe(Number(session.user.id), Number(recipe?.id));
     } else {
-      insertFavoriteRecipe(Number(session?.user.id), recipeId);
+      await insertFavoriteRecipe(Number(session.user.id), Number(recipe?.id));
     }
 
     revalidatePath(`/recetas/${slug}`);

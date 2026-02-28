@@ -4,8 +4,8 @@ import {
   getRecipeIngredientsById,
 } from "@/lib/dal";
 import { notFound } from "next/navigation";
-import { RecipeView } from "../_components/RecipeView";
 import { auth } from "@/auth";
+import { RecipeView } from "../_components/view/RecipeView";
 
 type Params = {
   params: Promise<{ slug: string }>;

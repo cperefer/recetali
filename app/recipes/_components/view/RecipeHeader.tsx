@@ -25,6 +25,7 @@ export function RecipeHeader({
       className={`w-full h-full min-h-50 md:min-h-65 md:max-h-80   bg-cover sm:bg-auto relative`}
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
+      {/* Sustituir por un componente que tenga este botón, volver y editar */}
       {isAuthenticated && (
         <RecipeFavoriteButton isFavorite={isFavorite} isHeaderButton={true} />
       )}

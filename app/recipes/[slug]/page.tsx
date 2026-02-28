@@ -5,7 +5,7 @@ import {
 } from "@/lib/dal";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
-import { RecipeView } from "../_components/view/RecipeView";
+import { RecipeView } from "@recipes/_components/view/RecipeView";
 
 type Params = {
   params: Promise<{ slug: string }>;

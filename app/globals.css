@@ -40,6 +40,14 @@
   @apply flex-1 py-3 rounded-xl md:flex-none md:px-6 md:py-2 md:rounded-full;
 }
 
+h1 {
+  @apply text-3xl md:text-6xl
+}
+
+h2 {
+  @apply text-2xl md:text-4xl
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

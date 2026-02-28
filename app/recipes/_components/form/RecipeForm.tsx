@@ -4,7 +4,7 @@ import { RecipeFormHeader } from "./RecipeFormHeader";
 export function RecipeForm({ recipe }: { recipe?: Recipe }) {
   console.log(recipe);
   return (
-    <div>
+    <div className="w-full h-full px-3 md:px-5 pt-5 flex flex-col relative">
       <RecipeFormHeader />
     </div>
   );

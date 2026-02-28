@@ -29,6 +29,17 @@
   }
 }
 
+.btn-primary {
+  @apply flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 
+         transition text-white font-medium disabled:cursor-not-allowed 
+         disabled:bg-gray-400;
+}
+
+/* Variantes responsive */
+.btn-primary-mobile {
+  @apply flex-1 py-3 rounded-xl md:flex-none md:px-6 md:py-2 md:rounded-full;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

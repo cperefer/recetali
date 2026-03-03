@@ -3,6 +3,7 @@ export function RecipeFormInformation() {
     <div>
       <div>
         <p>informacion</p>
+        <p>receta</p>
       </div>
     </div>
   );

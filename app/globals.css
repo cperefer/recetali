@@ -35,13 +35,16 @@
          disabled:bg-gray-400;
 }
 
-/* Variantes responsive */
 .btn-primary-mobile {
   @apply flex-1 py-3 rounded-xl md:flex-none md:px-6 md:py-2 md:rounded-full;
 }
 
 .button-with-icon {
   @apply flex items-center justify-center gap-2
+}
+
+.border-bottom-gray {
+  @apply border-b border-gray-400/30
 }
 
 h1 {

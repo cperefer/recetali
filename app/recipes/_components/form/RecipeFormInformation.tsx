@@ -1,10 +1,10 @@
 export function RecipeFormInformation() {
   return (
     <div className="px-2 mt-2 md:mt-5 border bg-white dark:bg-transparent rounded-xl">
-      <div className="border-bottom-gray pb-1 mt-2">
+      <div className="mx-2 md:mx-3 pb-1 mt-2 border-bottom-gray">
         <h4 className="text-xl font-bold">Información básica</h4>
       </div>
-      <div className="mt-2 px-2">
+      <div className="mt-2 px-2 md:px-3">
         <form>
           <div className="flex flex-col">
             <label htmlFor="title">Título</label>

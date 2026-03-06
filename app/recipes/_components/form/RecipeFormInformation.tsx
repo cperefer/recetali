@@ -1,6 +1,6 @@
 export function RecipeFormInformation() {
   return (
-    <div className="px-2 mt-2 md:mt-5 border bg-white dark:bg-transparent rounded-xl">
+    <div className="px-2 border bg-white dark:bg-transparent rounded-xl">
       <div className="mx-2 md:mx-3 pb-1 mt-2 border-bottom-gray">
         <h4 className="text-xl font-bold">Información básica</h4>
       </div>

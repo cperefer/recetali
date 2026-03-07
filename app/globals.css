@@ -3,8 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #d1d5dc;
-  --secondary: #3700fd;
+  --primary: #2875c4;
+  --secondary: #9628c4;
 }
 
 @theme inline {
@@ -21,7 +21,7 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --primary: #fd9a00;
-    --secondary: #3700fd;
+    --secondary: #00fd9a;
   }
 }
 
@@ -40,7 +40,7 @@
 }
 
 .btn-primary {
-  @apply border-primary 
+  @apply border-primary text-white dark:text-black
 }
 
 .btn-secondary {
@@ -48,7 +48,7 @@
 }
 
 .btn-with-icon {
-  @apply flex items-center justify-center gap-2
+  @apply flex items-center justify-center gap-2 text-black dark:text-white
 }
 
 

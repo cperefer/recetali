@@ -22,7 +22,7 @@ export function RecipeButtons({
             )}
 
             <button
-              className={`button-with-icon border border-neutral-300 bg-white dark:bg-black hover:bg-neutral-100 transition py-3 rounded-xl ${isAuthenticated ? "flex-1" : "ml-auto px-6"}`}
+              className={`btn-with-icon border border-neutral-300 bg-white dark:bg-black hover:bg-neutral-100 transition py-3 rounded-xl ${isAuthenticated ? "flex-1" : "ml-auto px-6"}`}
             >
               <Share2 size={18} />
               Compartir

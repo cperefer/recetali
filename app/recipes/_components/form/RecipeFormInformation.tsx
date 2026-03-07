@@ -10,14 +10,14 @@ export function RecipeFormInformation() {
             <label htmlFor="title">Título</label>
             <input
               type="text"
-              className="h-8 border border-gray-300 dark:border-amber-500 rounded-md "
+              className="h-8 border border-primary rounded-md "
               name="title"
               id="title"
             />
           </div>
           <div className="flex flex-col mt-1">
             <label htmlFor="">Descripción</label>
-            <textarea className="h-15 border border-gray-300 dark:border-amber-500 rounded-md"></textarea>
+            <textarea className="h-15 border border-gray-300 dark:border-primary rounded-md"></textarea>
           </div>
         </form>
       </div>

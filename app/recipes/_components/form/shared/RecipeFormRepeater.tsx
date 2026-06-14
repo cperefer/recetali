@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { RecipeFormInput } from "./RecipeFormInput";
 
@@ -9,6 +11,7 @@ interface Props {
 
 export function RecipeFormRepeater({ items, text, onChange }: Props) {
   const [elements, setElements] = useState<string[]>(items ?? [""]);
+  const sanitized = text.replace(/[^\w\-]+/g, "-").toLowerCase();
 
   const onChangeHandler = (index: number, value: string) => {
     const next = [...elements];
@@ -31,8 +34,9 @@ export function RecipeFormRepeater({ items, text, onChange }: Props) {
         {elements.map((item, i) => (
           <div className="flex flex-row" key={i}>
             <RecipeFormInput
-              key={i}
               initialValue={item}
+              id={`${sanitized}-${i}`}
+              name={`${sanitized}-${i}`}
               onChange={(value: string) => onChangeHandler(i, value)}
             />
             <button

@@ -1,22 +1,16 @@
 import { useFormContext } from "react-hook-form";
 import { RecipeFormInput } from "./shared/RecipeFormInput";
+import { RecipeFormSectionTitle } from "./shared/RecipeFormSectionTitle";
 
 export function RecipeFormInformation() {
   const { register } = useFormContext();
   return (
     <div className="px-2 border bg-white dark:bg-transparent rounded-xl min-h-67">
-      <div className="mx-2 md:mx-3 pb-1 mt-2 border-bottom-gray">
-        <h4 className="text-xl font-bold">Información básica</h4>
-      </div>
+      <RecipeFormSectionTitle text="Información básica" />
       <div className="mt-2 px-2 md:px-3">
         <div className="flex flex-col">
           <label htmlFor="title">Título</label>
-          <input
-            type="text"
-            className="pl-1 h-8 border border-primary rounded-md"
-            id="title"
-            {...register("title", { required: true })}
-          />
+          <RecipeFormInput fieldName="title" />
         </div>
         <div className="flex flex-col mt-1">
           <label htmlFor="">Descripción</label>
@@ -31,7 +25,7 @@ export function RecipeFormInformation() {
           <label className="pr-1" htmlFor="people">
             Personas
           </label>
-          <RecipeFormInput fieldName="pax" width="20" />
+          <RecipeFormInput fieldName="pax" width="20" placeholder="2" />
         </div>
         <div className="w-1/3">
           <label className="pr-1" htmlFor="time">

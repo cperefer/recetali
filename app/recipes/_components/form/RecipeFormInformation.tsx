@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { RecipeFormInput } from "./shared/RecipeFormInput";
 
 export function RecipeFormInformation() {
   const { register } = useFormContext();
@@ -27,30 +28,34 @@ export function RecipeFormInformation() {
       </div>
       <div className="px-2 md:px-3 py-5 flex justify-around">
         <div className="w-1/3">
-          <label htmlFor="people">Personas</label>
-          <input
-            type="text"
-            className="ml-1 pl-1 w-20 h-8 border border-primary rounded-md"
-            id="people"
-            {...register("people", { required: true })}
+          <label className="pr-1" htmlFor="people">
+            Personas
+          </label>
+          <RecipeFormInput fieldName="pax" width="20" />
+        </div>
+        <div className="w-1/3">
+          <label className="pr-1" htmlFor="time">
+            Tiempo
+          </label>
+          <RecipeFormInput
+            fieldName="timeToDone"
+            width="20"
+            placeholder="min"
           />
         </div>
         <div className="w-1/3">
-          <label htmlFor="time">Tiempo</label>
-          <input
-            type="text"
-            className="ml-1 pl-1 w-20 h-8 border border-primary rounded-md "
-            id="time"
-            placeholder="min."
-            {...register("time", { required: true })}
-          />
-        </div>
-        <div className="w-1/3">
-          <label htmlFor="dificulty">Dificultad</label>
+          <label className="pr-1" htmlFor="dificulty">
+            Dificultad
+          </label>
           <select
-            className="ml-1 pl-1 w-20 h-8 border border-primary rounded-md"
+            className="ml-1 w-20 h-8 border border-primary rounded-md"
             id="dificulty"
-            {...register("dificulty", { required: true })}
+            {...register("dificulty", {
+              required: true,
+              setValueAs(value: string) {
+                return value.toUpperCase();
+              },
+            })}
           >
             <option className="bg-black" value="easy">
               Fácil

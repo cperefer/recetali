@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function RecipeFormRepeater({ items, textButton, name }: Props) {
-  const { setValue, getValues, control } = useFormContext();
+  const { getValues, control } = useFormContext();
   const { fields, append, remove } = useFieldArray({ control, name });
   const initial = (getValues(name) as string[] | undefined) ?? items ?? [""];
 
@@ -26,11 +26,24 @@ export function RecipeFormRepeater({ items, textButton, name }: Props) {
     .replace(/[^\w\-]+/g, "-")
     .toLowerCase();
 
-  const onChangeHandler = (index: number, value: string) => {
-    setValue(`${name}.${index}`, value, { shouldDirty: true });
+  const focusFirstEmptyField = () => {
+    const currentValues = (getValues(name) as string[] | undefined) ?? [];
+    const firstEmptyIndex = currentValues.findIndex((value) => !value?.trim());
+
+    if (firstEmptyIndex >= 0) {
+      const field = document.getElementById(`${sanitized}-${firstEmptyIndex}`);
+      field?.focus();
+      return true;
+    }
+
+    return false;
   };
 
   const addElement = () => {
+    if (focusFirstEmptyField()) {
+      return;
+    }
+
     append("");
   };
 
@@ -48,10 +61,10 @@ export function RecipeFormRepeater({ items, textButton, name }: Props) {
                 (getValues(name) as string[] | undefined)?.[i] ?? ""
               }
               id={`${sanitized}-${i}`}
-              name={name}
-              onChange={(value: string) => onChangeHandler(i, value)}
+              fieldName={`${name}[${i}]`}
             />
             <button
+              type="button"
               onClick={() => removeElement(i)}
               className="btn w-8 h-8 border-none! text-red-600"
             >
@@ -61,6 +74,7 @@ export function RecipeFormRepeater({ items, textButton, name }: Props) {
         ))}
       </div>
       <button
+        type="button"
         onClick={addElement}
         className="btn btn-primary bg-primary text-black rounded-md!"
       >

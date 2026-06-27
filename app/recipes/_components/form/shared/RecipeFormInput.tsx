@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 export function RecipeFormInput({
   initialValue,
@@ -13,23 +14,25 @@ export function RecipeFormInput({
   id?: string;
   name?: string;
 }) {
-  const [value, setValue] = useState(initialValue);
+  const { register } = useFormContext();
   const [generatedId] = useState(
     () => `input-${Math.random().toString(36).slice(2, 9)}`,
   );
 
-  const onChangeHandler = (text: string) => {
-    setValue(text);
-    onChange?.(text);
-  };
+  const fieldName = `${name}.${id?.split("-")[1]}`;
+  const fieldProps = register(fieldName, { required: true });
+
   return (
     <input
       type="text"
+      defaultValue={initialValue}
       className="pl-1 mb-2 w-full h-8 border border-primary rounded-md"
-      name={name ?? generatedId}
       id={id ?? generatedId}
-      value={value}
-      onChange={({ target }) => onChangeHandler(target.value)}
+      {...fieldProps}
+      onChange={(e) => {
+        fieldProps.onChange(e);
+        if (onChange) onChange(e.target.value);
+      }}
     />
   );
 }

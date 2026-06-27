@@ -7,7 +7,7 @@ export function RecipeFormIngredients() {
   return (
     <div className="border rounded-xl min-h-67 h-full">
       <RecipeFormSectionTitle text="Ingredientes" />
-      <RecipeFormRepeater text="Añadir ingrediente" />
+      <RecipeFormRepeater name="ingredients" textButton="Añadir ingrediente" />
     </div>
   );
 }

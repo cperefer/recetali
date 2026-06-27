@@ -1,42 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { RecipeFormInput } from "./RecipeFormInput";
+import { useFormContext, useFieldArray } from "react-hook-form";
 
 interface Props {
   items?: string[];
-  text: string;
-  onChange?: (items: string[]) => void;
+  name: string;
+  textButton: string;
 }
 
-export function RecipeFormRepeater({ items, text, onChange }: Props) {
-  const [elements, setElements] = useState<string[]>(items ?? [""]);
-  const sanitized = text.replace(/[^\w\-]+/g, "-").toLowerCase();
+export function RecipeFormRepeater({ items, textButton, name }: Props) {
+  const { setValue, getValues, control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({ control, name });
+  const initial = (getValues(name) as string[] | undefined) ?? items ?? [""];
+
+  useEffect(() => {
+    if ((fields?.length ?? 0) === 0 && initial.length > 0) {
+      initial.forEach((val) => append(val));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const sanitized = textButton
+    .split(" ")[1]
+    .replace(/[^\w\-]+/g, "-")
+    .toLowerCase();
 
   const onChangeHandler = (index: number, value: string) => {
-    const next = [...elements];
-    next[index] = value;
-    setElements(next);
-    onChange?.(next);
+    setValue(`${name}.${index}`, value, { shouldDirty: true });
   };
 
   const addElement = () => {
-    setElements([...elements, ""]);
+    append("");
   };
 
   const removeElement = (index: number) => {
-    setElements(elements.filter((_, i) => i !== index));
+    remove(index);
   };
 
   return (
     <div className="mx-2 md:mx-3 my-2">
       <div>
-        {elements.map((item, i) => (
-          <div className="flex flex-row" key={i}>
+        {fields.map((field, i) => (
+          <div className="flex flex-row" key={field.id}>
             <RecipeFormInput
-              initialValue={item}
+              initialValue={
+                (getValues(name) as string[] | undefined)?.[i] ?? ""
+              }
               id={`${sanitized}-${i}`}
-              name={`${sanitized}-${i}`}
+              name={name}
               onChange={(value: string) => onChangeHandler(i, value)}
             />
             <button
@@ -52,7 +64,7 @@ export function RecipeFormRepeater({ items, text, onChange }: Props) {
         onClick={addElement}
         className="btn btn-primary bg-primary text-black rounded-md!"
       >
-        {text}
+        {textButton}
       </button>
     </div>
   );

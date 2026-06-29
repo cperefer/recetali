@@ -9,8 +9,8 @@ export function RecipeFormInformation() {
       <RecipeFormSectionTitle text="Información básica" />
       <div className="mt-2 px-2 md:px-3">
         <div className="flex flex-col">
-          <label htmlFor="title">Título</label>
-          <RecipeFormInput fieldName="title" />
+          <label htmlFor="name">Título</label>
+          <RecipeFormInput fieldName="name" />
         </div>
         <div className="flex flex-col mt-1">
           <label htmlFor="">Descripción</label>

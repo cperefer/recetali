@@ -1,13 +1,12 @@
 "use client";
 
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { createRecipe } from "@/app/actions/recipe";
 import { Recipe } from "@/app/generated/prisma/client";
 import { RecipeFormHeader } from "./RecipeFormHeader";
 import { RecipeFormInformation } from "./RecipeFormInformation";
 import { RecipeFormImage } from "./RecipeFormImage";
-import { RecipeFormIngredients } from "./RecipeFormIngredients";
-import { RecipeFormSteps } from "./RecipeFormSteps";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { createRecipe } from "@/app/actions/recipe";
+import { RecipeFormRepiterContainer } from "./shared/RecipeFormRepeaterContainer";
 
 interface FormValues {
   title?: string;
@@ -41,10 +40,18 @@ export function RecipeForm({ recipe }: { recipe?: Recipe }) {
           </div>
           <div className="create-recipe-section">
             <div className="w-full md:w-2/3">
-              <RecipeFormSteps />
+              <RecipeFormRepiterContainer
+                fieldName="steps"
+                textTitle="Pasos"
+                textButton="Añadir paso"
+              />
             </div>
             <div className="w-full md:w-1/3">
-              <RecipeFormIngredients />
+              <RecipeFormRepiterContainer
+                fieldName="ingredients"
+                textTitle="Ingredientes"
+                textButton="Añadir ingrediente"
+              />
             </div>
           </div>
         </div>

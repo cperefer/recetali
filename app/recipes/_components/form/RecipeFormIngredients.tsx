@@ -5,7 +5,7 @@ import { RecipeFormRepeater } from "./shared/RecipeFormRepeater";
 
 export function RecipeFormIngredients() {
   return (
-    <div className="border rounded-xl min-h-67 h-full">
+    <div className="p-2 border bg-white dark:bg-transparent rounded-xl h-fit">
       <RecipeFormSectionTitle text="Ingredientes" />
       <RecipeFormRepeater name="ingredients" textButton="Añadir ingrediente" />
     </div>

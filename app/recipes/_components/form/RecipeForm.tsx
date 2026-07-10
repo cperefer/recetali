@@ -7,6 +7,7 @@ import { RecipeFormImage } from "./RecipeFormImage";
 import { RecipeFormIngredients } from "./RecipeFormIngredients";
 import { RecipeFormSteps } from "./RecipeFormSteps";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { createRecipe } from "@/app/actions/recipe";
 
 interface FormValues {
   title?: string;
@@ -15,13 +16,19 @@ interface FormValues {
 }
 
 export function RecipeForm({ recipe }: { recipe?: Recipe }) {
-  console.log(recipe);
   const methods = useForm();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+    createRecipe(data as Partial<Recipe>);
+  };
+
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className="w-[90%] max-w-6xl"
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
         <div className="w-full h-full px-3 md:px-5 pt-5 flex flex-col relative bg-gray-100 dark:bg-transparent">
           <RecipeFormHeader />
           <div className="create-recipe-section">

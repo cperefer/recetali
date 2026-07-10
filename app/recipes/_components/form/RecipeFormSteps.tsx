@@ -4,7 +4,7 @@ import { RecipeFormRepeater } from "./shared/RecipeFormRepeater";
 
 export function RecipeFormSteps() {
   return (
-    <div className="px-2 border bg-white dark:bg-transparent rounded-xl min-h-67">
+    <div className="p-2 border bg-white dark:bg-transparent rounded-xl h-fit">
       <RecipeFormSectionTitle text="Pasos" />
       <RecipeFormRepeater name="steps" textButton="Añadir paso" />
     </div>

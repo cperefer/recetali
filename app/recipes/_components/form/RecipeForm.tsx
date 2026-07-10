@@ -25,7 +25,7 @@ export function RecipeForm({ recipe }: { recipe?: Recipe }) {
   return (
     <FormProvider {...methods}>
       <form
-        className="w-[90%] max-w-6xl"
+        className="w-[95%] md:w-[90%] max-w-6xl h-fit"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         <div className="w-full h-full px-3 md:px-5 pt-5 flex flex-col relative bg-gray-100 dark:bg-transparent">
@@ -55,7 +55,14 @@ export function RecipeForm({ recipe }: { recipe?: Recipe }) {
             </div>
           </div>
         </div>
-        <button>manda cosass</button>
+        <div>
+          <button
+            type="button"
+            className="ml-5 mt-3 btn btn-primary bg-primary text-black rounded-md!"
+          >
+            Enviar
+          </button>
+        </div>
       </form>
     </FormProvider>
   );

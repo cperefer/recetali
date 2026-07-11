@@ -43,3 +43,7 @@ next-env.d.ts
 # db
 /app/generated/prisma
 dev.db
+
+# user-uploaded images (temporary local storage)
+/public/images/recipes/*
+!/public/images/recipes/.gitkeep

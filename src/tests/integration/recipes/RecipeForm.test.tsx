@@ -2,10 +2,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const { createRecipeMock, redirectMock, routerMock } = vi.hoisted(() => ({
+const { createRecipeMock, routerMock } = vi.hoisted(() => ({
   createRecipeMock: vi.fn(),
-  redirectMock: vi.fn(),
-  routerMock: { back: vi.fn(), push: vi.fn() },
+  routerMock: { back: vi.fn(), push: vi.fn(), replace: vi.fn() },
 }));
 
 vi.mock("@/app/actions/recipe", () => ({
@@ -13,7 +12,6 @@ vi.mock("@/app/actions/recipe", () => ({
 }));
 
 vi.mock("next/navigation", () => ({
-  redirect: (path: string) => redirectMock(path),
   useRouter: () => routerMock,
 }));
 
@@ -74,7 +72,7 @@ describe("RecipeForm", () => {
     expect(createRecipeMock).not.toHaveBeenCalled();
   });
 
-  it("should submit the collected form data and redirect to the created recipe", async () => {
+  it("should submit the collected form data and replace the history entry with the created recipe", async () => {
     const user = userEvent.setup();
     createRecipeMock.mockResolvedValue({ slug: "tarta-de-manzana" });
 
@@ -93,10 +91,12 @@ describe("RecipeForm", () => {
       category: "POSTRES",
     });
 
-    expect(redirectMock).toHaveBeenCalledWith("/recipes/tarta-de-manzana");
+    expect(routerMock.replace).toHaveBeenCalledWith(
+      "/recipes/tarta-de-manzana",
+    );
   });
 
-  it("should not redirect when createRecipe does not return a created recipe", async () => {
+  it("should not replace the history entry when createRecipe does not return a created recipe", async () => {
     const user = userEvent.setup();
     createRecipeMock.mockResolvedValue(null);
 
@@ -105,7 +105,7 @@ describe("RecipeForm", () => {
     await user.click(screen.getByRole("button", { name: "Enviar" }));
 
     expect(createRecipeMock).toHaveBeenCalledTimes(1);
-    expect(redirectMock).not.toHaveBeenCalled();
+    expect(routerMock.replace).not.toHaveBeenCalled();
   });
 
   it("should add a new step field when the add-step button is clicked", async () => {

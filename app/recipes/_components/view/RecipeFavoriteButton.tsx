@@ -35,7 +35,7 @@ export function RecipeFavoriteButton({
         <button
           onClick={handleToggleFavoriteRecipe}
           disabled={isPending}
-          className="absolute cursor-pointer right-5 z-50 text-white py-3 font-medium disabled:cursor-not-allowed"
+          className="cursor-pointer text-white font-medium disabled:cursor-not-allowed"
         >
           <Heart fill={isFavorite ? "white" : "none"} size={24} />
         </button>

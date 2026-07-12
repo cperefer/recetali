@@ -1,5 +1,5 @@
 import { fromDatabaseToHuman } from "@/utilites/parseDificulty";
-import { RecipeFavoriteButton } from "./RecipeFavoriteButton";
+import RecipeHeaderButtons from "./RecipeHeaderButtons";
 
 type Props = {
   imageUrl: string;
@@ -25,10 +25,10 @@ export function RecipeHeader({
       className={`w-full h-full min-h-50 md:min-h-65 md:max-h-80 bg-cover sm:bg-auto relative`}
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
-      {/* Sustituir por un componente que tenga este botón, volver y editar */}
-      {isAuthenticated && (
-        <RecipeFavoriteButton isFavorite={isFavorite} isHeaderButton={true} />
-      )}
+      <RecipeHeaderButtons
+        isAuthenticated={isAuthenticated}
+        isFavorite={isFavorite}
+      />
 
       <div className="absolute inset-0 flex flex-col justify-end items-center bg-black/20 backdrop-opacity-60">
         <div className="text-center pb-5 text-shadow-lg text-white">

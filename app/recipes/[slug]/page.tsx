@@ -40,10 +40,6 @@ export default async function SeeRecipePage({ params }: Params) {
     isAuthenticated &&
     !!(await getRecipeFavoriteForUser(Number(session.user.id), recipe.id));
 
-  // console.log(recipe);
-  // console.log(ingredients);
-  // console.log(isFavorite);
-
   return (
     <RecipeView
       recipe={recipe}

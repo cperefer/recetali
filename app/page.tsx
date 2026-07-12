@@ -17,7 +17,19 @@ export default async function Home() {
       >
         {session && <button type="submit">Signout</button>}
       </form>
-      <Link href="/recipes/sopas_de_ajo">Sopas de ajo</Link>
+      {!session && (
+        <p>
+          <Link href="/login">Login</Link>
+        </p>
+      )}
+      {session && (
+        <p>
+          <Link href="/recipes/add">Añadir receta</Link>
+        </p>
+      )}
+      <p>
+        <Link href="/recipes/sopas_de_ajo">Sopas de ajo</Link>
+      </p>
     </div>
   );
 }

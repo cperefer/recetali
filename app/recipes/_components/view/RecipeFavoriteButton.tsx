@@ -44,7 +44,7 @@ export function RecipeFavoriteButton({
           <button
             onClick={handleToggleFavoriteRecipe}
             disabled={isPending}
-            className="btn-primary btn-primary-mobile"
+            className="btn-favorite btn-favorite-mobile"
           >
             <Heart fill={isFavorite ? "white" : "none"} size={18} />
             {isFavorite ? "Eliminar" : "Guardar"}

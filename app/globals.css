@@ -3,11 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #2875c4;
+  --secondary: #9628c4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,6 +20,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #fd9a00;
+    --secondary: #00fd9a;
   }
 }
 
@@ -29,15 +35,47 @@
   }
 }
 
+.btn {
+  @apply border rounded-2xl p-1 px-2 cursor-pointer
+}
+
 .btn-primary {
+  @apply border-primary text-white dark:text-black
+}
+
+.btn-secondary {
+  @apply border-secondary 
+}
+
+.btn-with-icon {
+  @apply flex items-center justify-center gap-2 text-black dark:text-white
+}
+
+
+.btn-favorite {
   @apply flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 
          transition text-white font-medium disabled:cursor-not-allowed 
          disabled:bg-gray-400;
 }
 
-/* Variantes responsive */
-.btn-primary-mobile {
+.btn-favorite-mobile {
   @apply flex-1 py-3 rounded-xl md:flex-none md:px-6 md:py-2 md:rounded-full;
+}
+
+.create-recipe-section {
+  @apply flex flex-col md:flex-row gap-4 w-full mt-2 md:mt-5;
+}
+
+.border-bottom-gray {
+  @apply border-b border-gray-400/30
+}
+
+h1 {
+  @apply text-3xl md:text-6xl
+}
+
+h2 {
+  @apply text-xl md:text-3xl
 }
 
 body {

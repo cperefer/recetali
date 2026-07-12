@@ -1,6 +1,6 @@
 "use client";
 
-import { Recipe, RecipeIngredient } from "@/app/generated/prisma/client";
+import { Recipe, RecipeIngredient, Step } from "@/app/generated/prisma/client";
 import { RecipeHeader } from "./RecipeHeader";
 import { RecipeBadges } from "./RecipeBadges";
 import { RecipeIngredients } from "./RecipeIngredients";
@@ -8,7 +8,9 @@ import { RecipeSteps } from "./RecipeSteps";
 import { RecipeButtons } from "./RecipeButtons";
 
 type Props = {
-  recipe: Recipe;
+  recipe: Recipe & {
+    steps: Step[];
+  };
   ingredients: RecipeIngredient[];
   isAuthenticated: boolean;
   isFavorite: boolean;

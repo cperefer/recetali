@@ -42,6 +42,10 @@ export const getRecipeById = async (id: number) => {
   try {
     const result = await prisma.recipe.findUnique({
       where: { id },
+      include: {
+        steps: true,
+        tags: true,
+      },
     });
 
     return result || null;
@@ -58,6 +62,10 @@ export const getRecipeBySlug = cache(async (slug: string) => {
   try {
     const result = await prisma.recipe.findUnique({
       where: { slug },
+      include: {
+        steps: true,
+        tags: true,
+      },
     });
 
     return result || null;

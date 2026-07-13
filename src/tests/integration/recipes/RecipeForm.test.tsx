@@ -17,7 +17,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => routerMock,
 }));
 
-const { RecipeForm } = await import("@recipes/_components/form/RecipeForm");
+const { RecipeForm } = await import("@recipes/form/RecipeForm");
 
 // RecipeFormInformation labels the name/description/pax/timeToDone/observations
 // fields incorrectly (mismatched or missing `htmlFor`/`id`), so those fields

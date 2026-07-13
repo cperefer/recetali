@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # db
-/app/generated/prisma
+/src/app/generated/prisma
 dev.db
 
 # user-uploaded images (temporary local storage)

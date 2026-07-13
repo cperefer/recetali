@@ -1,4 +1,4 @@
-import { fromDatabaseToHuman } from "@/utilites/parseDificulty";
+import { fromDatabaseToHuman } from "@/lib/parseDificulty";
 import { RecipeFavoriteButton } from "./RecipeFavoriteButton";
 
 type Props = {

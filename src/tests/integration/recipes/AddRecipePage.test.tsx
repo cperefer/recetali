@@ -5,11 +5,11 @@ const { validateSessionMock } = vi.hoisted(() => ({
   validateSessionMock: vi.fn(),
 }));
 
-vi.mock("@/utilites/validateSession", () => ({
+vi.mock("@/lib/validateSession", () => ({
   validateSession: () => validateSessionMock(),
 }));
 
-vi.mock("@recipes/_components/form/RecipeForm", () => ({
+vi.mock("@recipes/form/RecipeForm", () => ({
   RecipeForm: () => <div data-testid="recipe-form" />,
 }));
 

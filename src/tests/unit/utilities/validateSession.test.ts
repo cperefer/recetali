@@ -13,7 +13,7 @@ vi.mock("next/navigation", () => ({
   redirect: (path: string) => redirectMock(path),
 }));
 
-const { validateSession } = await import("@/utilites/validateSession");
+const { validateSession } = await import("@/lib/validateSession");
 
 describe("validateSession", () => {
   beforeEach(() => {

@@ -19,8 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@recipes/*": ["./app/recipes/*"],
+      "@/*": ["./src/*"],
+      "@recipes/*": ["./src/features/recipes/components/*"],
     }
   },
   "include": [

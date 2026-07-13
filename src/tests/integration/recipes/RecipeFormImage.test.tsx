@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FormProviderWrapper } from "../../fixtures/FormProviderWrapper";
-import { RecipeFormImage } from "@recipes/_components/form/RecipeFormImage";
+import { RecipeFormImage } from "@recipes/form/RecipeFormImage";
 
 const createObjectURLMock = vi.fn(() => "blob:preview-url");
 const revokeObjectURLMock = vi.fn();

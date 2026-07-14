@@ -7,7 +7,7 @@ import { RecipeFormHeader } from "./RecipeFormHeader";
 import { RecipeFormInformation } from "./RecipeFormInformation";
 import { RecipeFormImage } from "./RecipeFormImage";
 import { RecipeFormRepiterContainer } from "./shared/RecipeFormRepeaterContainer";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
   name?: string;
@@ -24,6 +24,7 @@ interface FormValues {
 
 export function RecipeForm({ recipe }: { recipe?: Recipe }) {
   const methods = useForm();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const createdRecipe: Recipe = await createRecipe(
@@ -31,7 +32,7 @@ export function RecipeForm({ recipe }: { recipe?: Recipe }) {
     );
 
     if (createdRecipe) {
-      redirect(`/recipes/${createdRecipe.slug}`);
+      router.replace(`/recipes/${createdRecipe.slug}`);
     }
   };
 

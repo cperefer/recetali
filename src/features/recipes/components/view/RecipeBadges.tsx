@@ -1,6 +1,6 @@
 "use client";
 
-import { fromDatabaseToHuman } from "@/utilites/parseDificulty";
+import { fromDatabaseToHuman } from "@/lib/parseDificulty";
 import RecipeBadge from "./RecipeBadge";
 
 type Props = {

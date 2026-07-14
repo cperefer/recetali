@@ -1,5 +1,5 @@
-import { fromDatabaseToHuman } from "@/utilites/parseDificulty";
 import RecipeHeaderButtons from "./RecipeHeaderButtons";
+import { fromDatabaseToHuman } from "@/lib/parseDificulty";
 
 type Props = {
   imageUrl: string;

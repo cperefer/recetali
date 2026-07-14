@@ -1,5 +1,5 @@
-import { validateSession } from "@/utilites/validateSession";
-import { RecipeForm } from "@recipes/_components/form/RecipeForm";
+import { validateSession } from "@/lib/validateSession";
+import { RecipeForm } from "@recipes/form/RecipeForm";
 
 export async function generateMetadata() {
   return {

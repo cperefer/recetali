@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FormProviderWrapper } from "../../fixtures/FormProviderWrapper";
-import { RecipeFormRepeater } from "@recipes/_components/form/shared/RecipeFormRepeater";
+import { RecipeFormRepeater } from "@recipes/form/shared/RecipeFormRepeater";
 
 const renderRepeater = () =>
   render(

@@ -1,0 +1,16 @@
+import { auth } from "@/auth";
+import MainHeader from "@/features/shared/MainHeader";
+import { PropsWithChildren } from "react";
+
+export default async function HomeLayout({ children }: PropsWithChildren) {
+  const session = await auth();
+
+  return (
+    <div className="p-3 flex flex-col items-center w-full h-screen">
+      <div className="w-[90%]">
+        {/* <MainHeader session={session} /> */}
+        {children}
+      </div>
+    </div>
+  );
+}

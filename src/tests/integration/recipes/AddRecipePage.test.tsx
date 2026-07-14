@@ -13,9 +13,8 @@ vi.mock("@recipes/form/RecipeForm", () => ({
   RecipeForm: () => <div data-testid="recipe-form" />,
 }));
 
-const { default: AddRecipePage, generateMetadata } = await import(
-  "@/app/recipes/add/page"
-);
+const { default: AddRecipePage, generateMetadata } =
+  await import("@/app/(recipe)/recipe/add/page");
 
 describe("AddRecipePage", () => {
   beforeEach(() => {

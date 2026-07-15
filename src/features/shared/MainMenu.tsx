@@ -15,7 +15,7 @@ export default function MainMenu({
 
   return (
     <div className="hidden md:block w-2/4">
-      <ul className="flex flex-row gap-2">
+      <ul className="flex flex-row gap-5">
         <li>
           <Link href={"/"} className={getLinkClass("/")}>
             Inicio

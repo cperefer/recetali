@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import z from "zod";
 
@@ -72,4 +72,8 @@ export const loginAction = async (
 
     throw error;
   }
+};
+
+export const logoutAction = async () => {
+  await signOut();
 };

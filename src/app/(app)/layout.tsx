@@ -6,9 +6,9 @@ export default async function HomeLayout({ children }: PropsWithChildren) {
   const session = await auth();
 
   return (
-    <div className="p-3 flex flex-col items-center w-full h-screen">
+    <div className="p-3 flex flex-col items-center w-full min-w-sm h-screen">
       <div className="w-[90%]">
-        {/* <MainHeader session={session} /> */}
+        <MainHeader session={session} />
         {children}
       </div>
     </div>

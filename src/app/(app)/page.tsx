@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="">
       Home
-      <form
+      {/* <form
         action={async () => {
           "use server";
 
@@ -16,20 +16,7 @@ export default async function Home() {
         }}
       >
         {session && <button type="submit">Signout</button>}
-      </form>
-      {!session && (
-        <p>
-          <Link href="/login">Login</Link>
-        </p>
-      )}
-      {session && (
-        <p>
-          <Link href="/recipes/add">Añadir receta</Link>
-        </p>
-      )}
-      <p>
-        <Link href="/recipes/sopas_de_ajo">Sopas de ajo</Link>
-      </p>
+      </form> */}
     </div>
   );
 }

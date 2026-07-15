@@ -7,15 +7,27 @@ export default function MainMenu({
 }) {
   return (
     <div>
-      <div>Menu</div>
-      {isAuthenticated && (
-        <p>
-          <Link href="/recipes/add">Añadir receta</Link>
-        </p>
-      )}
-      <p>
-        <Link href="/recipes/sopas_de_ajo">Sopas de ajo</Link>
-      </p>
+      <ul>
+        <li>
+          <Link href={"/"}>Inicio</Link>
+        </li>
+        <li>
+          <Link href={"/recipes"}>Recetas</Link>
+        </li>
+        <li>
+          <Link href={"/"}>Categorías</Link>
+        </li>
+        {isAuthenticated && (
+          <>
+            <li>
+              <Link href="/recipes/add">Mis recetas</Link>
+            </li>
+            <li>
+              <Link href="/recipes/sopas_de_ajo">Favoritos</Link>
+            </li>
+          </>
+        )}
+      </ul>
     </div>
   );
 }

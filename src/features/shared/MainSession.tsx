@@ -1,8 +1,8 @@
 import { Session } from "next-auth";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { getUserInitial } from "@/lib/utils";
+import UserMenuDropdown from "./UserMenuDropdown";
 
 export default function MainSession({ session }: { session: Session | null }) {
   if (!session) {
@@ -16,13 +16,7 @@ export default function MainSession({ session }: { session: Session | null }) {
   }
 
   return (
-    <details className="relative">
-      <summary className="flex list-none items-center gap-1 cursor-pointer marker:content-none [&::-webkit-details-marker]:hidden">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-primary font-semibold">
-          {getUserInitial(session)}
-        </span>
-        <ChevronDown size={16} />
-      </summary>
+    <UserMenuDropdown initial={getUserInitial(session)}>
       <ul className="absolute right-0 z-10 mt-2 w-40 rounded-2xl border bg-background p-2 shadow-md">
         <li>
           <Link
@@ -43,6 +37,6 @@ export default function MainSession({ session }: { session: Session | null }) {
           </form>
         </li>
       </ul>
-    </details>
+    </UserMenuDropdown>
   );
 }

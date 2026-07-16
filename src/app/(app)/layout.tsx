@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import MainHeader from "@/features/shared/MainHeader";
+import MainHeader from "@/features/home/components/header/MainHeader";
 import { PropsWithChildren } from "react";
 
 export default async function HomeLayout({ children }: PropsWithChildren) {

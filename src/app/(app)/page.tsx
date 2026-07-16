@@ -1,22 +1,12 @@
-import { auth, signOut } from "@/auth";
-import Link from "next/link";
+import { auth } from "@/auth";
+import MainHero from "@/features/home/components/MainHero";
 
 export default async function Home() {
   const session = await auth();
 
-  console.log(session);
   return (
     <div className="">
-      Home
-      {/* <form
-        action={async () => {
-          "use server";
-
-          await signOut();
-        }}
-      >
-        {session && <button type="submit">Signout</button>}
-      </form> */}
+      <MainHero isAuthenticated={!!session} />
     </div>
   );
 }

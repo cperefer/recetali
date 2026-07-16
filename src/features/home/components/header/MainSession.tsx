@@ -2,7 +2,7 @@ import { Session } from "next-auth";
 import Link from "next/link";
 import { logoutAction } from "@/app/actions/auth";
 import { getUserInitial } from "@/lib/utils";
-import UserMenuDropdown from "./UserMenuDropdown";
+import UserMenuDropdown from "@/features/shared/UserMenuDropdown";
 
 export default function MainSession({ session }: { session: Session | null }) {
   if (!session) {

@@ -1,5 +1,6 @@
 import MainHeroButtons from "./MainHeroButtons";
 import MainHeroTitle from "./MainHeroTitle";
+import MainHeroRecipeOfTheWeek from "./MainHeroRecipeOfTheWeek";
 
 export default function MainHero({
   isAuthenticated,
@@ -7,9 +8,12 @@ export default function MainHero({
   isAuthenticated: boolean;
 }) {
   return (
-    <div className="p-2">
-      <MainHeroTitle />
-      <MainHeroButtons isAuthenticated={isAuthenticated} />
+    <div className="grid grid-cols-1 items-center gap-6 p-2 md:grid-cols-2">
+      <div>
+        <MainHeroTitle />
+        <MainHeroButtons isAuthenticated={isAuthenticated} />
+      </div>
+      <MainHeroRecipeOfTheWeek />
     </div>
   );
 }

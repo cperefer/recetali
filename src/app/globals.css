@@ -43,6 +43,10 @@
   @apply border-primary text-white dark:text-black
 }
 
+.btn-primary-filled {
+  @apply bg-orange-600 hover:bg-orange-700 transition text-white font-medium
+}
+
 .btn-secondary {
   @apply border-secondary 
 }

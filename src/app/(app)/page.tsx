@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import MainHero from "@/features/home/components/MainHero";
+import MainHero from "@/features/home/components/hero/MainHero";
 
 export default async function Home() {
   const session = await auth();

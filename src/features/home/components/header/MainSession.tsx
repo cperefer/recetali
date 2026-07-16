@@ -7,7 +7,7 @@ import UserMenuDropdown from "@/features/shared/UserMenuDropdown";
 export default function MainSession({ session }: { session: Session | null }) {
   if (!session) {
     return (
-      <div className="pt-1">
+      <div className="">
         <p>
           <Link className="btn btn-primary text-white!" href={"/login"}>
             Login

@@ -7,11 +7,13 @@ import UserMenuDropdown from "./UserMenuDropdown";
 export default function MainSession({ session }: { session: Session | null }) {
   if (!session) {
     return (
-      <p>
-        <Link className="btn btn-primary text-white!" href={"/login"}>
-          Login
-        </Link>
-      </p>
+      <div className="pt-1">
+        <p>
+          <Link className="btn btn-primary text-white!" href={"/login"}>
+            Login
+          </Link>
+        </p>
+      </div>
     );
   }
 

@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { prisma } from "./prisma";
+import type { RecipeSummary } from "@/features/recipes/types/recipe";
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -75,6 +76,33 @@ export const getRecipeBySlug = cache(async (slug: string) => {
     return null;
   }
 });
+
+export const getRecipesForWeeklyHighlight = cache(
+  async (): Promise<RecipeSummary[] | null> => {
+    try {
+      const result = await prisma.recipe.findMany({
+        orderBy: { createdAt: "asc" },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          imageUrl: true,
+          category: true,
+          dificulty: true,
+          pax: true,
+          timeToDone: true,
+          timesDone: true,
+        },
+      });
+
+      return result;
+    } catch (error) {
+      console.error("Error getting recipes for weekly highlight", error);
+
+      return null;
+    }
+  },
+);
 
 export const getRecipeIngredientsById = async (id: number) => {
   console.log({ id });

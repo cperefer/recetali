@@ -3,6 +3,7 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { createRecipe } from "@/app/actions/recipe";
 import { Recipe } from "@/app/generated/prisma/client";
+import { useRecipeFormDraft } from "@/features/recipes/hooks/useRecipeFormDraft";
 import { RecipeFormHeader } from "./RecipeFormHeader";
 import { RecipeFormInformation } from "./RecipeFormInformation";
 import { RecipeFormImage } from "./RecipeFormImage";
@@ -23,8 +24,9 @@ interface FormValues {
 }
 
 export function RecipeForm({ recipe }: { recipe?: Recipe }) {
-  const methods = useForm();
+  const methods = useForm<FormValues>();
   const router = useRouter();
+  const { clearDraft } = useRecipeFormDraft(methods);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const createdRecipe: Recipe = await createRecipe(
@@ -32,6 +34,7 @@ export function RecipeForm({ recipe }: { recipe?: Recipe }) {
     );
 
     if (createdRecipe) {
+      clearDraft();
       router.replace(`/recipes/${createdRecipe.slug}`);
     }
   };
